@@ -6,20 +6,16 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
 
 from pp import *
-apcount = []
-apdate = []
 def fitJU(j):
     pltf.clf()
     p = artists_play_inday[j]
-    del apcount[:]
-    del apdate[:] = range(0, 244)
+    apcount = [0] * 184 
+    apdate = range(0, 184)
     for i in p:
-        apcount.append(i[0])
-        apdate.append(i[1])
+        apcount[i[1]] = i[0]
+
     x = np.asarray(apdate)
     y = np.asarray(apcount)
-    print x
-    print y
     
     x_plot = np.asarray(range(0, 245))
     # create matrix versions of these arrays
