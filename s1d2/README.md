@@ -1,5 +1,5 @@
 
-# 阿里音乐流行趋势预测大赛，第一季第二个数据集（100个用户）
+# 阿里音乐流行趋势预测大赛，第一季第二个数据集（100个歌手）
 ## data文件夹
 放置`p2_mars_tianchi_songs.csv`、`p2_mars_tianchi_user_actions.csv`两个文件
 
