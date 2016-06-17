@@ -2,7 +2,7 @@
 https://tianchi.shuju.aliyun.com
 
 ## 文件说明
-第一季比赛前后共两个数据。第一个数据集预测50个歌手的歌曲播放量，使用的程序在文件夹`s1d1`中；第二个数据集预测100个歌手的歌曲播放量，使用的程序和代码在文件夹`s1d2`中。
+第一季比赛前后共两个数据。第一个数据集预测50个歌手的歌曲播放量，使用的程序在文件夹`s1d1`中；第二个数据集预测100个歌手的歌曲播放量，使用的代码在文件夹`s1d2`中。
 
 # 第一个数据集（50个歌手）
 ## 依赖的运行环境
@@ -16,7 +16,7 @@ https://tianchi.shuju.aliyun.com
 * scikit-learn （用来作学习) [安装方法](http://www.bogotobogo.com/python/scikit-learn/scikit-learn_install.php)  
 
 ## data文件夹
-放置mars_tianchi_songs.csv、mars_tianchi_user_actions.csv两个文件
+mars_tianchi_songs.csv、mars_tianchi_user_actions.csv两个数据文件
 
 ## 运行ipython
 在shell下面运行ipython
@@ -100,12 +100,14 @@ fitJU(0)
 ![](s1d1/pic/artist_trend_predict_0.png)
 
 ## test(degree)
-`test(degree)`函数用前４个月的播放量预测后两个月的播放量，拿预测值和真值比较，计算出总体的Ｆ值，实现了如下图的F值计算公式![](F.png)
+`test(degree)`函数用前４个月的播放量预测后两个月的播放量，拿预测值和真值比较，计算出总体的Ｆ值，实现了如下图的F值计算公式
+
+![](F.png)
 
 
 # 第二个数据集（100个歌手）
 ## data文件夹
-放置`p2_mars_tianchi_songs.csv`、`p2_mars_tianchi_user_actions.csv`两个文件
+`p2_mars_tianchi_songs.csv`、`p2_mars_tianchi_user_actions.csv`两个数据文件
 
 ## 程序
 * pp2.py是数据的预处理和统计部分
