@@ -204,6 +204,179 @@ def stl(j):
     plt.figure(1)
     s.plot()
 
+def stlTest(j):
+    split_date_rank = 122
+    plt.close('all')
+    ap_df[j].plot()
+    orig_arr = np.asarray((ap_df[j]).tolist())
+    orig = np.log(ap_df[j])[:split_date_rank]
+    #print 'len of orig', len(orig)
+    #print_full(orig)
+    stl_w = sm.tsa.seasonal_decompose(orig.tolist(), freq=7)
+    stl_w_se = stl_w.seasonal
+    stl_w_tr = stl_w.trend
+    stl_w_res = stl_w.resid
+    stl_w.plot()
+    #print 'stl_w_se type', type(stl_w_se)
+    #print len(stl_w_se)
+    #print 'stl_w_se', stl_w_se
+    w_s = stl_w_se[-7:]
+    #print 'w_s', w_s
+
+    stl_w_rest = orig - stl_w_se
+    stl_m = sm.tsa.seasonal_decompose(np.nan_to_num(stl_w_rest).tolist(), freq=30)
+    stl_m_se = stl_m.seasonal
+    stl_m_tr = stl_m.trend
+    stl_m_res = stl_m.resid
+    stl_m.plot()
+    #print 'stl_m_se type', type(stl_m_se)
+    #print len(stl_m_se)
+    #print 'stl_m_se', stl_m_se
+    m_s = stl_m_se[-30:]
+    #print 'm_s', m_s
+
+    # rest = stl_m_tr[15:167]
+    #rest = stl_m_tr
+    rest = stl_w_rest - stl_m_se
+    rest_s = pd.Series(rest, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+    plt.figure(4)
+    rest_s.plot()
+    rest_x = range(0, split_date_rank)
+    try:
+        print '++++++++ frac 0.2 ++++++++++++'
+        rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.2, return_sorted=False)
+        rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+        plt.figure(4)
+        rest_ss.plot()
+
+        order = (6, 0, 1)
+        model  = ARIMA(rest_ss, order, freq='D')
+        model = model.fit()
+        model.predict(1, 255).plot()
+    except:
+        try:
+            print '++++++++ frac 0.18 ++++++++++++'
+            rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.18, return_sorted=False)
+            rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+            plt.figure(4)
+            rest_ss.plot()
+
+            order = (6, 0, 1)
+            model  = ARIMA(rest_ss, order, freq='D')
+            model = model.fit()
+            model.predict(1, 255).plot()
+        except:
+            try:
+                print '++++++++ frac 0.16 ++++++++++++'
+                rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.16, return_sorted=False)
+                rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                plt.figure(4)
+                rest_ss.plot()
+
+                order = (6, 0, 1)
+                model  = ARIMA(rest_ss, order, freq='D')
+                model = model.fit()
+                model.predict(1, 255).plot()
+            except:
+                try:
+                    print '++++++++ frac 0.14 ++++++++++++'
+                    rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.14, return_sorted=False)
+                    rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                    plt.figure(4)
+                    rest_ss.plot()
+
+                    order = (6, 0, 1)
+                    model  = ARIMA(rest_ss, order, freq='D')
+                    model = model.fit()
+                    model.predict(1, 255).plot()
+                except:
+                    try:
+                        print '++++++++ frac 0.12 ++++++++++++'
+                        rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.12, return_sorted=False)
+                        rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                        plt.figure(4)
+                        rest_ss.plot()
+
+                        order = (6, 0, 1)
+                        model  = ARIMA(rest_ss, order, freq='D')
+                        model = model.fit()
+                        model.predict(1, 255).plot()
+                    except:
+                        try:
+                            print '++++++++ frac 0.1 ++++++++++++'
+                            rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.1, return_sorted=False)
+                            rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                            plt.figure(4)
+                            rest_ss.plot()
+
+                            order = (6, 0, 1)
+                            model  = ARIMA(rest_ss, order, freq='D')
+                            model = model.fit()
+                            model.predict(1, 255).plot()
+                        except:
+                            try:
+                                print '++++++++ frac 0.08 ++++++++++++'
+                                rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.08, return_sorted=False)
+                                rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                                plt.figure(4)
+                                rest_ss.plot()
+
+                                order = (6, 0, 1)
+                                model  = ARIMA(rest_ss, order, freq='D')
+                                model = model.fit()
+                                model.predict(1, 255).plot()
+                            except:
+                                print '++++++++ frac 0.05 ++++++++++++'
+                                rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.05, return_sorted=False)
+                                rest_ss = pd.Series(rest_as, index=d[:split_date_rank], name='artist' + str(j) + 'rest')
+                                plt.figure(4)
+                                rest_ss.plot()
+
+                                order = (4, 0, 1)
+                                model  = ARIMA(rest_ss, order, freq='D')
+                                model = model.fit()
+                                model.predict(1, 255).plot()
+
+    rest_pred = model.predict(1, split_date_rank + 61)
+    #print type(rest_pred)
+    #print len(rest_pred)
+    #print 'rest_pred', rest_pred
+
+    rest_pred_nda = rest_pred.values
+    #print 'rest_pred_nda', rest_pred_nda
+    # rest_pred_nda = np.insert(rest_pred_nda, 0, 1)
+    #rest_pred_nda = np.append(rest_pred_nda, rest_pred_nda)
+    #print 'rest_pred_nda', rest_pred_nda
+    #print 'rest_pred_nda len', len(rest_pred_nda)
+
+    for i in range(0, 8):
+        stl_w_se = np.append(stl_w_se, w_s)
+    stl_w_se = np.append(stl_w_se, w_s[:5])
+    #print len(stl_w_se)
+    #print 'stl_w_se', stl_w_se
+
+    stl_m_se = np.append(stl_m_se, 0)
+    stl_m_se = np.append(stl_m_se, m_s)
+    stl_m_se = np.append(stl_m_se, m_s)
+    #print len(stl_m_se)
+    #print 'stl_m_se', stl_m_se
+
+    compose_stl = stl_w_se + stl_m_se + rest_pred_nda
+    fit_ap = np.exp(compose_stl)
+    s = pd.Series(fit_ap, index=d2[:split_date_rank + 61], name='artist' + str(j) + 'compose')
+    plt.figure(1)
+    s.plot()
+    print 'typeof(fit_ap)', type(fit_ap)
+    print 'typeof(orig_arr)', type(orig_arr)
+    diff_rate = abs(fit_ap - orig_arr) / orig_arr
+    diff_rate_s = pd.Series(diff_rate, index=d2[:split_date_rank + 61], name='artist' + str(j) + 'diff')
+    plt.figure(5)
+    diff_rate_s.plot()
+    diff_rate_sm = sm.nonparametric.lowess(diff_rate, np.asarray(range(0, split_date_rank + 61)), frac=0.2, return_sorted=False)
+    diff_rate_sm_s = pd.Series(diff_rate_sm, index=d2[:split_date_rank + 61], name='artist' + str(j) + 'diff')
+    plt.figure(5)
+    diff_rate_sm_s.plot()
+
 frac_l = {}
 def predstl():
     frac_l.clear()
@@ -349,7 +522,6 @@ def predstl():
             #print row
             fpwriter.writerow(row)
 
-
     fp.close()
 
 def lenOfAP():
@@ -364,48 +536,3 @@ def print_full(x):
     pd.set_option('display.max_rows', len(x))
     print(x)
     pd.reset_option('display.max_rows')
-
-def predp(k, l):
-    for j in range(k, l):
-        #time.sleep(5)
-        plt.close('all')
-        plt.figure(j)
-        ap_df[j].plot()
-        orig = np.log(ap_df[j])
-        stl_w = sm.tsa.seasonal_decompose(orig.tolist(), freq=7)
-        stl_w_se = stl_w.seasonal
-        w_s = stl_w_se[-7:]
-
-        stl_w_rest = orig - stl_w_se
-        stl_m = sm.tsa.seasonal_decompose(np.nan_to_num(stl_w_rest).tolist(), freq=30)
-        stl_m_se = stl_m.seasonal
-        m_s = stl_m_se[-30:]
-
-        rest = stl_w_rest - stl_m_se
-        rest_s = pd.Series(rest, index=d, name='artist' + str(j) + 'rest')
-        rest_x = range(0, 183)
-        rest_as = sm.nonparametric.lowess(rest, np.asarray(rest_x), frac=0.03, return_sorted=False)
-        rest_ss = pd.Series(rest_as, index=d, name='artist' + str(j) + 'rest')
-
-        order = (2, 0, 1)
-        model  = ARIMA(rest_ss, order, freq='D')
-        model = model.fit()
-        rest_pred = model.predict(1, 244)
-
-        rest_pred_nda = rest_pred.values
-
-        for i in range(0, 8):
-            stl_w_se = np.append(stl_w_se, w_s)
-        stl_w_se = np.append(stl_w_se, w_s[:5])
-
-        stl_m_se = np.append(stl_m_se, 0)
-        stl_m_se = np.append(stl_m_se, m_s)
-        stl_m_se = np.append(stl_m_se, m_s)
-
-        compose_stl = stl_w_se + stl_m_se + rest_pred_nda
-        fit_ap = np.exp(compose_stl)
-        s = pd.Series(fit_ap, index=d2, name='artist' + str(j) + 'compose')
-        plt.figure(j)
-        s.plot()
-        fig = plt.figure(j)
-        fig.savefig('pic_trend/' + str(j) + '.png')
