@@ -3,6 +3,8 @@ https://tianchi.shuju.aliyun.com
 
 ## 文件说明
 第一季比赛前后共两个数据。第一个数据集预测50个歌手的歌曲播放量，使用的程序在文件夹`s1d1`中；第二个数据集预测100个歌手的歌曲播放量，使用的代码在文件夹`s1d2`中。
+* 第一个数据集合的下载链接：https://pan.baidu.com/s/1i4ORGjF
+* 第二个数据集合的下载链接：https://pan.baidu.com/s/1hrF0sok
 
 # 第一个数据集（50个歌手），文件夹`s1d1`
 ## 依赖的运行环境
@@ -17,6 +19,8 @@ https://tianchi.shuju.aliyun.com
 
 ## data文件夹
 mars_tianchi_songs.csv、mars_tianchi_user_actions.csv两个数据文件
+* 下载链接：https://pan.baidu.com/s/1i4ORGjF
+* 下载两个数据文件，放到文件`data`里面，zip文件需要解压得到csv文件
 
 ## 运行ipython
 在shell下面运行ipython
@@ -108,6 +112,8 @@ fitJU(0)
 # 第二个数据集（100个歌手），文件夹`s1d2`
 ## data文件夹
 `p2_mars_tianchi_songs.csv`、`p2_mars_tianchi_user_actions.csv`两个数据文件
+* 下载链接：https://pan.baidu.com/s/1hrF0sok
+* 下载两个数据文件，放到文件`data`里面，zip文件需要解压得到csv文件
 
 ## 程序
 * pp2.py是数据的预处理和统计部分
